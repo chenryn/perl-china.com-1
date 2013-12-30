@@ -1,0 +1,65 @@
+<!DOCTYPE html> <html xmlns:wb=“http://open.weibo.com/wb”> <head> <meta charset="utf-8"> <title>Perl学习平台 | Perl 中国用户组</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="Perl教程, Perl学习, Perl开发, Perl视频">
+<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css" type="text/css" />
+<style type="text/css">
+    body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+    }
+</style>
+<link rel="stylesheet" href="/css/style.css" type="text/css" />
+</head>
+<body>
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="glyphicon-bar"></span>
+          <span class="glyphicon-bar"></span>
+          <span class="glyphicon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.perl-china.com/">Perl-China.com</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/">首页</a></li>
+          <li class=""><a href="http://cn.perlmaven.com/">专家课程</a></li>
+          <li class=""><a href="http://bbs.chinaunix.net/thread-1707137-1-1.html">教学视频</a></li>
+          <li class=""><a href="http://perl-china.com/">社区问答</a></li>
+          <li class=""><a href="http://cpan.php-oa.com/" target="_blank">中文CPAN</a></li>
+          <li class=""><a href="http://perlweekly.com/archive/" target="_blank">每周要闻</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">圣诞文集<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="http://www.perladvent.org/">Perl5 Monger</a></li>
+              <li><a href="http://perl6advent.wordpress.com/">Perl6</a></li>
+              <li><a href="http://advent.perl.kr/">Perl韩国</a></li>
+              <li><a href="http://qiita.com/advent-calendar" alt="原为Perl日本，现在包括多种技术">Qiita技术社区</a></li>
+              <li><a href="http://www.catalystframework.org/calendar/">Catalyst框架</a></li>
+              <li><a href="http://advent.perldancer.org" alt="2013年因作者喜得贵子暂停">Dancer框架</a></li>
+              <li><a href="advent.perlchina.org" alt="近两年没有">Perl中国</a></li>
+              <li><a href="http://leonerds-code.blogspot.co.uk/search/label/advent">Future模块</a></li>
+              <li><a href="http://sysadvent.blogspot.co.uk/">系统运维</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/login"><button type="button" class="btn btn-primary btn-xs">登陆</button></a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+
+  <div class="container">
+    <: $content | raw :>
+  </div>
+  
+  <div class="container">
+    <footer class="text-center"><p><a href="/home/contact/">联系我们</a> | <a href="/home/about/">关于我们</a> | 常见问题 | 隐私协议 | 服务条款</p> <p>&copy; <a href="http://www.perl-china.com" target="_blank">Perl 中国用户组</a> 2013  | 京ICP备13045968号 </p></footer>
+  </div> 
+  <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+  <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js" type="text/javascript"></script>
+</body>
+</html>

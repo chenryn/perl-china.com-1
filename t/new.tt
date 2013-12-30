@@ -1,0 +1,7 @@
+<% FOREACH tr IN lb %>
+      <tr>
+<% FOREACH td IN tr %>
+        <td><span class="glyphicon glyphicon-pencil"></span> <a href="http://blogs.perl-china.com/?p=<% td.id %>"><% td.post_title %></a></td>
+<% END %>
+      </tr>
+<% END %>

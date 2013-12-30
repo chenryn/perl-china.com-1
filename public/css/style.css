@@ -1,0 +1,44 @@
+a:hover{text-decoration: none;}
+
+#index_banner {
+  background: url("/images/camel_bg.jpg") no-repeat;
+  margin-bottom: 20px;
+}
+
+#weekly_head, #weibo_head, #question_head {
+  border-bottom: solid 1px #000000;
+  margin: 10px 0px;
+}
+
+#weekly_head h2, #weibo_head h2, #question_head h2 {
+  display: inline
+}
+
+#question_body{margin: 0px;}
+
+#question_body li {
+  margin-bottom: 12px;
+  padding-bottom: 4px;
+  border-bottom: solid 1px #ccc;
+  margin-left: 1px;
+  font-size: 14px;
+  color: #333;
+}
+
+.index_question_title {
+  border-left: solid 2px gray;
+  padding-left: 6px;
+}
+
+.index_question_detail {
+  margin-left: 10px;
+  margin-top: 5px;
+  font-size: 10px;
+  color: gray;
+}
+
+.index_question_detail a {
+  font-size: 12px;
+  margin-right: 20px;
+  float: right;
+}

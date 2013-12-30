@@ -1,0 +1,111 @@
+<div id="index_banner" class="jumbotron">
+  <h1>少年 Perl 说</h1>
+  <p>灵活 & 强大，这就是 Perl 的魔法世界</p>
+  <p style="height: 150px"></p>
+  <p><a href="http://bbs.perl-china.com/" class="btn btn-info btn-lg pull-right" style="margin-top: -20px">开始传送»</a></p>
+</div>
+
+<div class="container">
+  <div class="row" id="perlblog">
+    <table class="table table-hover">
+    : for $lb -> $tr {
+      <tr>
+      : for $tr -> $td {
+        <td><span class="glyphicon glyphicon-pencil"></span> <a href="http://blogs.perl-china.com/?p=<: $td.id :>"><: $td.post_title :></a></td>
+      : }
+      </tr>
+    : }
+    </table>
+  </div>
+
+  <h2 class="text-center">如何学习Perl，使用Perl可以做些什么？</h2>
+  <div class="row">
+    <div class="col-md-4">
+      <a href="http://mojo.php-oa.com" class="thumbnail"><img data-src="holder.js/350x200" alt="260x180" style="width: 350px; height: 200px;" src="/images/mojolicious.png"></a>
+      <h2 class="text-center">Web应用开发与测试</h2>
+      <p>除 CGI 以外，Perl也有丰富的Web开发框架，如Catalyst、Dancer、Mojolicious 和 Amon，能快速完成Web服务开发。而 Perl 的 TestAnythingProtocol 也是诸多测试高手最喜欢的工具。</p>
+    </div>
+    <div class="col-md-4"><a href="http://rex.perl-china.com/" class="thumbnail"><img data-src="holder.js/350x200" alt="260x180" style="width: 350px; height: 200px;" src="/images/rexify.png"></a><h2 class="text-center">系统网络运维</h2><p>Perl原生带有很多*nix系统级别的API函数，非常适合*nix系统管理。此外，在运维的工作中，存在大量重复性工作，以及需要做管理系统、监控系统、发布系统等自动化场景，都是Perl非常擅长的领域。</p></div>
+    <div class="col-md-4"><a href="/course/" class="thumbnail"><img data-src="holder.js/350x200" alt="260x180" style="width: 350px; height: 200px;" src="/images/dna.jpg"></a><h2 class="text-center">文本与信息处理</h2><p>文本流是Unix三大哲学之一，自带正则引擎的Perl是最擅长文本处理的编程语言。Perl被广泛的运用于文本流和信息处理中，例如生物信息学，人类基因组计划，金融证券分析，应用日志处理等。</p></div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-4"><a href="http://www.citrusperl.com/" class="thumbnail"><img data-src="holder.js/350x200" alt="260x180" style="width: 350px; height: 200px;" src="/images/citrusperl.jpg"></a><h2 class="text-center">桌面开发</h2><p>Perl可编写桌面图形用户界面，还可以扩展微软的Windows，常用Perl-Tk、gtk2-perl、Perl/Qt、wxPerl、Win32::OLE 等。</p></div>
+    <div class="col-md-4"><a href="/course/" class="thumbnail"><img data-src="holder.js/350x200" alt="260x180" style="width: 350px; height: 200px;" src="/images/async.png"></a><h2 class="text-center">异步编程</h2><p>除了基础的 Socket 模块，Perl 还提供了一系列异步编程框架，比如 POE、IO::Async、AnyEvent 和 Coro 等。在此基础上，则诞生了 Perlbal、Twiggy、Feersum 等一批高性能服务器，Promise、Future 等并发管理模块</p></div>
+    <div class="col-md-4"><a href="http://ofun.pm/" class="thumbnail"><img data-src="holder.js/350x200" alt="260x180" style="width: 350px; height: 200px;" src="/images/moe.jpg"></a><h2 class="text-center">够有(zhuang)趣(bi)</h2><p>Perl极客热衷于把代码写成画，诗甚至歌曲。还诞生了专门的-Ofun优化思想，比如Moe计划。这实质上反应了Perl快速实现DSL以及产品原型的能力，Gearman、MemCache、MogileFS甚至PHP最初都是用Perl实现的。</p></div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-8">
+          <div id="weekly_head">
+            <h2>本周要闻</h2>
+          </div>
+          : for $lw -> $w {
+            <: $w | raw :>
+          : }
+        </div>
+        
+        <div class="col-md-4">
+          <div id="question_head"><h2>社区问答</h2></div>
+          <ul id="question_body" class="list-unstyled">
+          : for $lq -> $q {
+            <li>
+              <a href="http://perl-china.com/t/<: $q.id :>" class="index_question_title"><: $q.title :></a>
+              <br>
+              <div class="index_question_detail">
+                <: $q.nickname :>
+                <: $q.create_at :> 提问
+                <span class="badge pull-right">回答(<: $q.comments_count :>)</span>
+              </div>
+            </li>
+          : }
+          </ul>
+          <div id="weibo_head"><h2>微博</h2></div>
+          <iframe width="100%" height="500" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=500&fansRow=1&ptype=1&speed=0&skin=5&isTitle=0&noborder=0&isWeibo=1&isFans=0&uid=3681227461&verifier=5cb21f6a&dpc=1"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>想更系统的学习 Perl?</h2>
+      <ul class="list-inline">
+        <li><a href="#ad1" class="thumbnail"><img style="width: 110px; height: 130px;" src="http://img13.360buyimg.com/n2/g4/M00/03/03/rBEGFk-g4qUIAAAAAAE4mmuH3tYAAAmuQJL2WIAATiy318.jpg" alt="Perl语言入门" /></a></li>
+        <li><a href="#ad1" class="thumbnail"><img style="width: 110px; height: 130px;" src="http://img14.360buyimg.com/n2/g15/M04/02/15/rBEhWVHJba0IAAAAAAUrZnwruncAAAhPwNVNoEABSt-409.jpg" alt="高阶Perl" /></a></li>
+        <li><a href="#ad1" class="thumbnail"><img style="width: 110px; height: 130px;" src="http://img11.360buyimg.com/n2/g13/M06/12/0A/rBEhVFJnNw8IAAAAAASvwhdiYkAAAEeHAH4tCUABK_a486.jpg" alt="Perl入门经典" /></a></li>
+        <li><a href="#ad1" class="thumbnail"><img style="width: 110px; height: 130px;" src="http://img13.360buyimg.com/n2/18744/9465de4a-fe4a-4254-aa31-aaa3b3cfe883.jpg" alt="Perl语言编程" /></a></li>
+        <li><a href="#ad1" class="thumbnail"><img style="width: 110px; height: 130px;" src="http://img14.360buyimg.com/n2/14202/81c27ff4-98de-434b-93c1-51ced4c7c022.jpg" alt="Perl高效编程" /></a></li>
+        <li><a href="#ad1" class="thumbnail"><img style="width: 110px; height: 130px;" src="http://img14.360buyimg.com/n2/15833/ddd55a06-4f0b-4a9a-97d7-3eadf0442417.jpg" alt="使用 Perl 实现系统管理自动化" /></a></li>
+        <li><a href="#ad1" class="thumbnail"><img style="width: 110px; height: 130px;" src="http://img10.360buyimg.com/n2/16084/d22a327c-cc0e-4d98-a00b-ae8a430738a6.jpg" alt="Perl最佳实践" /></a></li>
+        <li><a href="#ad1" class="thumbnail"><img style="width: 110px; height: 130px;" src="http://img14.360buyimg.com/n2/10316/9165d515-4b25-4924-ad3f-3cac4987468c.jpg" alt="Apache+MySQL+memcached+Perl开发高速开源网站" /></a></li>
+      </ul>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <a href="http://www.amazon.cn/b?_encoding=UTF8&node=658390051&tag=perlchina-23&linkCode=ur2&camp=536&creative=3200" title="如果你需要上京东或者卓越亚马逊买东西，请点下面的链接过去。 PerlChina 将能从京东的收入中获得一定的提成。">
+        <button type="button" class="btn btn-primary btn-lg btn-block">上卓越亚马逊购买</button>
+      </a>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h2>谁在使用Perl</h2>
+      <ul class="list-inline">
+        <li><a href="http://www.amazon.com/" target="_blank"><img src="http://g-ecx.images-amazon.com/images/G/01/gno/images/general/navAmazonLogoFooter._V169459313_.gif" style="width: 150px; height: 60px" alt=""></a></li>
+        <li><a href="http://www.yahoo.com/" target="_blank"><img src="/images/logos/yahoo.png" style="width: 150px; height: 60px" alt=""></a></li>
+        <li><a href="http://www.booking.com/" target="_blank"><img src="http://r-cc.bstatic.com/static/img/b26logo/booking_logo_zh/9c7bbfebb9f2890d18038c644840bee0e9b4580f.png" style="width: 150px; height: 60px" alt=""></a></li>
+        <li><a href="http://www.livedoor.com/" target="_blank"><img src="/images/logos/livedoor.png" style="width: 150px; height: 60px" alt=""></a></li>
+        <li><a href="http://www.dena.com/" target="_blank"><img src="/images/logos/dena.png" style="width: 150px; height: 60px" alt=""></a></li>
+        <li><a href="http://www.livejournal.com/" target="_blank"><img src="/images/logos/livejournal.png" style="width: 150px; height: 60px" alt=""></a></li>
+        <li><a href="http://www.blekko.com/" target="_blank"><img src="/images/logos/blekko.png" style="width: 150px; height: 60px" alt=""></a></li>
+        <li><a href="http://www.duckduckgo.com/" target="_blank"><img src="/images/logos/duckduckgo.png" style="width: 150px; height: 60px" alt=""></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
