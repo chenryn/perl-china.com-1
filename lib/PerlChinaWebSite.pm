@@ -1,9 +1,12 @@
 package PerlChinaWebSite;
 use Dancer ':syntax';
 use Dancer::Plugin::Database;
-use List::MoreUtils qw/natatime/;
+use Dancer::Plugin::Ajax;
+use List::MoreUtils qw(natatime);
 use Web::Query;
 use Data::Dumper;
+use File::Temp qw(tempfile);
+use IPC::Run qw(run timeout);
 use utf8;
 
 our $VERSION = '0.1';
@@ -16,8 +19,19 @@ get '/' => sub {
     };
 };
 
-get '/print' => sub {
-    print Dumper latest_blog();
+ajax '/run' => sub {
+    my ($in, $out, $err);
+    my $code = param('code');
+    my @cmd = qw(docker run -v /tmp/:/tmp:ro ubuntu perl);
+    my ($fh, $temp) = tempfile();
+    print $fh $code;
+    push @cmd, $temp;
+    run \@cmd, \$in, \$out, \$err, timeout(10) or debug($?);
+    unlink $temp;
+    return to_json({
+        Errors => [ split(/\n/, $err) ],
+        Events => [ split(/\n/, $out) ],
+    });
 };
 
 sub latest_blog {
@@ -50,7 +64,7 @@ sub latest_question {
 sub latest_weekly {
     my $q = wq('http://perlweekly.com/latest.html');
     my @ret;
-    for my $want ( qw/announcements articles code fun videos/ ) {
+    for my $want ( qw(announcements articles code fun videos) ) {
 #        $q->find('#'.$want)->parent->find('a')->each(sub {
 #            my ($k, $v) = @_;
 #            push @ret, {
