@@ -23,62 +23,704 @@
     
 <div id="impress">
         
-    <div class="step slide" data-x="0" data-y="-1500">
-      <div class="row">
-        <div class="col-md-8"><div class="workspace">
-          <div class="controls">
-            <button type="button" class="run btn btn-primary">Run</button>
-          </div>
-          <div class="workspace-top"><div class="workspace-editor">
-            <form>
-              <textarea class="editor" id="code">
-#!/usr/bin/perl
-use Modern::Perl 2012;
+  <div class="step slide" data-x="0" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+print "Hello, 世界\n";
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>Hello, 世界</h1>
+    <p>欢迎来到 Perl 的魔法世界，少年！</p>
+    <p>这里是 Perl 新手村，我会引导你学习了解 Perl5 的基础语法以及通用场景下的最佳实践。引导全程可以交互式学习，左侧输入 Perl 代码，点击 Run 按钮即可看到远端服务器上的执行结果。</p>
+    <p>按照编程位面的惯例，大声跟 Perl 的魔法世界问声好吧~愿您本次位面之旅愉快，早日转职 Perl Monger！</p>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-# strings
-my $s1 = qq'single line';
+  <div class="step slide" data-x="2000" data-y="-1500" data-scale="4">
+    <h1>后台实现概述</h1>
+    <p><b>《金刚经》：一切有为法，如梦幻泡影，如露亦如电，应作如是观</b></p>
+    <p>每一次 Perl 魔法的施展，都是在全新的 Docker 容器中进行，不用担心你有心无心的错误操作造成什么不可挽回的损失，请放心。</p>
+    <p>本设计参考 <a href="http://play.golang.org">Go Playground</a> 的说明文档，转益多师是我师。</p>
+  <div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div>
 
-=item Something
-	Example.
-=cut
+  <div class="step slide" data-x="10000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+$number = 1234;
+$string = 'foo';
+@array = (1, 2, 3, 4);
+%hash = ( key => 'value' );
 
-my $html=<<'HTML'
-<html>
-<title>hi!</title>
-</html>
-HTML
+print $array[0];
+print $hash{'key'};
 
+$number, $string = $string, $number;
+@newarray = @array;
+print @newarray;
+
+$sub = sub { return 1 };
+%newhash = { $sub => 'value' };
+print %newhash;
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>变量类型及赋值</h1>
+    <p>Perl 以极其精简的变量类型完成了丰富的功能，并且以醒目的前缀符号标示出来。</p>
+    <ul>
+      <li><code>$</code> 标示标量。不管是数值、字符串，都是标量，Perl 可以根据需要自由的转换，稍后的操作符介绍中将有详细示例；</li>
+      <li><code>@</code> 标示数组。而数组中的具体元素则可能是标量，我们可以通过索引直接获取该元素。</li>
+      <li><code>%</code> 标示哈希。注意 Perl 中，哈希的键只支持字符串标量。你可以尝试在左侧定义一个键为<code>$sub</code>的哈希，然后查看结果</li>
+    </ul>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
+
+  <div class="step slide" data-x="6000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+@_ = qw/3, 4/;
+&func;
+func();
+sub func {
+    my ($first, $second) = @_;
+    print $second;
+};
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>函数</h1>
+    <p>Perl 的函数实现非常简洁。因为 Perl 是弱类型的语言，所以函数默认情况下不会对传递的参数做任何的校验，而全部存入<code>@_</code>中。</p>
+    <p>所以我们可以看到很多 Perl 代码中根据自己的需要对 @_ 的不同处理：</p>
+    <pre>
+       my $self = shift;
+       my $cb = pop;
+    </pre>
+    <p>此外，函数的调用方式也有多种，尝试运行左侧代码可以看到，两次调用的运行结果是不同的。</p>
+    <p>在使用<code>&func</code>方式调用的时候，默认会把当前<code>@_</code>作为函数参数传递进去。这种方式容易引起一定困惑，不建议使用！</p>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
+
+  <div class="step slide" data-x="8000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+use Data::Dumper;
+sub func {
+    my $foo = "foo";
+    my @bar = qw(bar baz);
+    return $foo, \@bar, @bar;
+}
+print Dumper func();
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>函数返回值</h1>
+    <p>和传参同样简洁的是返回值的处理。Perl 统一以列表形式返回全部返回值。尝试运行左侧代码查看返回数组和数组引用的区别。</p>
+    <p><b>最佳实践：不管是传参还是返回，强烈建议使用引用的方式避免拷贝内存副本，简洁高效。</b></p>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
+
+  <div class="step slide" data-x="10000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+@array = (1, 2, 3, 4);
+@newarray = @array;
+print \@array, \@newarray;
+
+$array_ref = [1, 2, 3, 4];
+$new_ref = $array_ref;
+print $array_ref, $new_ref;
+print @{$new_ref};
+print $array_ref->[0];
+
+$hash_ref = { key => $array_ref };
+print %{$hash_ref};
+print $hash_ref->{'key'}->[0];
+
+$sub = sub { return 1 };
+print ref($sub);
+print $sub->();
+
+$obj = HTTP::Tiny->new();
+print ref($obj);
+print $obj->get('http://www.baidu.com');
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>引用和解引用</h1>
+    <p>Perl 中有一个<b>引用</b>的概念，类似于指针，直接标记变量在内存中的位置。Perl 中的复杂数据结构，都是通过多层引用来实现的。</p>
+    <p>获取变量的引用非常简单，在变量前缀符号前使用<code>\</code>即可。注意一切引用本身都是标量，所以都采用<code>$</code>前缀符。</p>
+    <p>默认的变量赋值过程，是在内存中有一次副本拷贝操作。而获取引用后通过赋值引用的方式，实际内容指向同一个内存地址，就可以省去这步了。内存地址的不同，可以在左侧代码运行结果中看出。</p>
+    <p>变量引用的逆操作，叫<b>解引用</b>。在引用变量前再重新使用其应有的变量前缀符号即可。数组引用的解引用即：</p>
+    <pre>
+      @{ $ref };
+    </pre>
+    <p>同理哈希引用的解引用即：</p>
+    <pre>
+      %{ $ref };
+    </pre>
+    <p>我们也可以通过解引用直接获取数组或者哈希中的单个元素，解引用操作符是<code>-></code>。</p>
+    <p>此外，<code>ref</code>函数提供给我们查看标量引用指向的实际变量类型的能力。</p>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
+
+  <div class="step slide" data-x="15000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+use feature 'say';
+$num += 12;
+print '312' + $num;
+print '312' . $num;
+
+$string = 'abc' x 5;
+$line = "abcd\n";
+$line .= "${string}ddd";
+
+print $line; 
+say for split('b', $string);
+
+chomp $line;
+print $line;
+chop $line;
+print $line;
+
+print length($line);
+print reverse($line);
+print substr($line, 1, 1);
+print uc($line);
+print lc("ABCD");
+print defined($other);
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>变量操作之标量</h1>
+    <p>标量赋值时可以使用单引号和双引号两种不同格式。这是学自 shell 的设定，方便进行变量内插。</p>
+    <p>字符串连接操作符为<code>.</code>，连接符以及数值的加减乘除操作符，都可以前置到赋值操作符<code>=</code>作为简写。</p>
+    <p>此外，Perl 有一个特殊的<code>x</code>操作符，用以快速生成重复的字符串。</p>
+    <p>其他常见标量操作符见左侧示例。</p>
+    <p>chomp 和 chop 的不同在于：chomp 只在标量结尾是<code>\r\n</code>的时候才生效。</p>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
+
+  <div class="step slide" data-x="15000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+@array = qw/a b c d/;
+print pop @array;
+print @array;
+push @array, 'a';
+print @array;
+print shift @array;
+print @array;
+unshift @array, 'd';
+print @array;
+push @array, (1, 2, 3);
+print sort @array;
+print sort { $a <=> $b } @array;
+print join '-', @array;
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>变量操作之数组(一)</h1>
+    <p>Perl 数组的基础操作就是元素的推拉、排序和组合。其中unshift/shift从数组起始位置操作，push/pop从数组结束位置操作。一般从性能考虑，建议使用push而不是unshift添加新元素。</p>
+    <p>数组排序可以自定义代码块来确定排序规则，Perl 会自动将进入对比的两个元素赋值给<code>$a</code>和<code>$b</code>。在这个空间以内，这两个标量是非常特殊的。但是为了意义更明确清晰，一般建议是所有 Perl 程序中，都不要给自己的变量起名为<code>$a</code>和<code>$b</code>。</p>
+    <p>习惯或者说喜欢类似 Perl6 及其他语言的排序风格的童鞋，可以参考<a href="http://metacpan.org/pod/Sort::Key">Sort::Key</a>模块。</p>
+    <pre>
+      use Sort::Key qw/keysort/;
+      @people = ({ name => 'john', surname => 'smith' }, { name => 'paul', surname => 'belvedere' });
+      @byname = keysort { $_->{name} } @people;
+    </pre>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
+
+  <div class="step slide" data-x="15000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+use List::AllUtils qw/first/;
+@array = qw/1 2 4 8 16 32/;
+print first {$_ > 5} @array;
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>变量操作之数组(二)</h1>
+    <p>Perl默认提供的数组操作不多，如果从其他语言过来的童鞋，习惯了有各种数组操作符的，可以使用<a href="">List::AllUtils</a>模块。</p>
+    <pre>
+      use List::AllUtils qw/:all/;
+      $f = first { $_ > 5 } @array;
+      print "Has one." if any { $_ > 5 } @array;
+      print "No one." if none { $_ > 5 } @array;
+      print "All." if all { $_ > 5 } @array;
+      print "Not all" if notall { $_ > 5 } @array;
+      @r = reduce { $a + $b } @array;
+      $s = max @number;
+      $s = sum @number;
+      $s = min @number;
+
+      $it = natatime 3, @array;
+      while( my @val = $it->() ) {
+          print "@val\n";
+      }
+
+      @x = qw/a b c d/;
+      @y = qw/1 2 3 4/;
+      @z = zip @x, @y;
+
+      my @x = uniq 1, 1, 2, 2, 3, 5, 3, 4;
+    </pre>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
+
+  <div class="step slide" data-x="15000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+%hash = ( a => 'b', c => 'd' );
+@keys = keys %hash;
+@values = values %hash;
+print delete $hash{'a'};
+print exists $hash{'a'};
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>变量操作之哈希</h1>
+    <p>哈希键值可以凭借<code>keys</code>和<code>values</code>两个操作提取成数组。需要注意的是，从 Perl5.18 开始，即便是同一个哈希，每次执行 keys 得到的数组顺序也会发生随机变化。</p>
+    <p>delete 操作其实在数组中也能使用，不过一般都只用在哈希中。试运行左侧代码，就可以发现这个操作的存在目的。因为他会将delete的数据值返回出来供人使用，然后再从哈希中删除这个键值对。</p>
+    <p>另：前一篇提到的List::AllUtils中，也有一部分关于键值对的函数可用。</p>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
+
+  <div class="step slide" data-x="15000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+$str = "aabbccdd";
+$str =~ s/[abc]/d/g;
+print $str;
+
+$_ = '192.168.0.200    Localhost';
+@match = m/^\s*?((?:\d{1,3}\.){3}\d{1,3})\s+(\w+)$/i;
+print @match;
+m/^\s*?(?<ip>(?:\d{1,3}\.){3}\d{1,3})\s+(?<hostname>\w+)$/i;
+print %+;
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>正则表达式</h1>
+    <p>强大的正则表达式是 Perl 必杀技之一。正则表达式的原理和详细用法，一本书都写不完。这里仅示例它最常用的两个用法：替换和捕获。</p>
+    <p>示例中用到了：</p>
+    <ul>
+      <li>元字符：<code>^</code>、<code>$</code>和<code>[]</code>等；</li>
+      <li>转义序列：<code>\s</code>、<code>\d</code>和<code>\w</code>等；</li>
+      <li>量词：<code>*</code>、<code>+</code>、<code>?</code>和<code>{n,m}</code>等；</li>
+      <li>扩展模式：<code>(?:)</code>用于放弃捕获和<code>(?<>)</code>用于命名捕获到%+哈希中等；</li>
+      <li>捕获组：<code>()</code>捕获内容可以以<code>$1 $2 $3 $4 ...</code>在随后的正则以及程序中使用，或者如左侧示例一般在列表上下文中直接复制给一个数组。</li>
+    </ul>
+    <p>在正则表达式可以确定的前提下，可以对正则进行预编译以提高性能，以下两种方式都可以：</p>
+    <pre>
+      my $re = qr/\d{1,3}/;
+      m/\d{1,3}/o;
+    </pre>
+    <p>注意：命名捕获也是Perl5.10后才有的功能。</p>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
+
+  <div class="step slide" data-x="15000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+use warnings;
+use feature 'state';
+use feature 'say';
+{
+  our $str = 123;
+  my $str1 = 321;
+  say $str;
+  say $str1;
+}
+say $str;
+say $str1;
+
+{
+  local $str = 111;
+  say $str;
+}
+say $str;
+
+sub test {
+  state $i;
+  $i++;
+};
+say test();
+say test();
+say test();
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>变量的词法作用域</h1>
+    <p>词法作用域，简单说就是代码块范围。不在代码块内的则在整个package范围，再大则是整个 Perl 程序文件的范围。</p>
+    <p>早年的 Perl 并不考虑这些，正如之前所见。但现在，Perl 强烈建议大家规范声明变量的词法作用域。</p>
+    <p>运行左侧代码了解关键字<code>my</code>、<code>our</code>和<code>local</code>的作用。</p>
+    <p>一般来说，尽量只使用<code>my</code>声明。在包变量导出的时候才使用<code>our</code>，比如模块的<code>$VERSION</code>。</p>
+    <p>从 Perl5.10 开始，新出现了<code>state</code>关键字。并且在 Perl5.18 开始，这些关键字也可以用于声明函数的词法作用域。但开发者中一直有声音认为这个功能直接使用闭包即可实现，用不着单独发明一个关键字。在争论未定论之前，大家请谨慎使用。</p>
+    <p>从本节开始，所有示例将启用<code>use strict;use warnings</code>规范。也建议大家同样使用。</p>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
+
+  <div class="step slide" data-x="16000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+use strict;
+use warnings;
+my @array = qw(a, b, c, d);
+my $len = @array;
+print $len;
+
+my @new = map { $_ . 'a' } @array;
+my $foo = map { $_ . 'a' } @array;
+my ($bar) = map { $_ . 'a' } @array;
+print @new;
+print $foo;
+print $bar;
+
+my @nums = (2, 1, 3, 5, 4, 6);
+my @odd = @nums[grep { $_ & 1 } 0..$#nums];
+print @odd;
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>上下文分析</h1>
+    <p>Perl 有三种上下文环境：标量、列表和真假。</p>
+    <p>Perl 中大量的操作符和函数会主动根据当前上下文环境来选择性的返回不同的数据。最典型的就是左侧示例中的数组在标量上下文中返回其数组长度而不是数组本身。此外另一个示例就是 map 操作。</p>
+    <p>真假上下文环境的示例是 grep 操作。</p>
+    <p>本处 grep 示例中用到了数组切片和<code>..</code>范围操作符。你可以拆解这行代码，分步骤执行并打印结果以了解这两个知识。</p>
+    <pre>
+      my @indexs = 0 .. $#nums;
+      print @indexs; 
+      my @needs = grep {$_ & 1} @indexs;
+      print @needs; 
+      print @nums[1,3,5];
+    </pre>
+    <p>需要指出的是，<b>列表不等同于数组</b>，列表上下文中的返回值也可能被赋值为哈希。</p>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
+
+  <div class="step slide" data-x="17000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+use strict;
+use warnings;
+my @array = qw/1 2 3/;
+for (my $i = 0; $i < scalar @array; $i++) {
+    print $array[$i], "\n";
+};
+for my $val (@array) {
+    next if $val == 1;
+    print $val and last;
+};
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>for循环</h1>
+    <p>循环控制是非常重要的一个结构。Perl中有<code>for</code>和<code>while</code>两种循环。事实上两者完全可以实现对方的功能，这里仅介绍各自的惯用场景。</p>
+    <p>for 循环有两种风格。一种是 C 风格，一种是数组循环风格。</p>
+    <p>在循环中，可以利用<code>next</code>、<code>last</code>和<code>redo</code>等关键字来控制循环。</p>
+    <p>在代码块内内容较少的情况下，可以直接将for语句后置成单行语句。这是 Perl 的常用语法：</p>
+    <pre>say for @array;</pre>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
+
+  <div class="step slide" data-x="19000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+use strict;
+use warnings;
+open my $fh, '<', 'bin/cpanm';
+while (my $line = <$fh>) {
+    print "$line" and last;
+};
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>while循环</h1>
+    <p>while循环的使用场景主要有两类：死循环和IO操作。</p>
+    <p>IO 操作主要是在大文件读取、SQL数据返回等方面。这方面采用 while 循环的原因是：while 语句中比较适合写列表上下文的操作，而 IO 操作在列表上下文中会从文件句柄中逐行读取，不要求一口气全部读入内存。</p>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
+
+  <div class="step slide" data-x="23000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+use strict;
+use warnings;
+$str = 'abc';
+print "Ok" if $str;
+print $str ? 'Ok' : 'Err';
+if ( $str eq 'abc' ) {
+   print "Ok";
+} elsif ( $str eq 'bcd' ) {
+   print "Ok too";
+} else {
+   print "Err";
+}
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>if/else判断</h1>
+    <p>Perl 中最常用的流程判断控制就是if/else。和其他语言不通的是，Perl 中的 else if 写作<code>elsif</code>。</p>
+    <p>和 for 一样，if 语句在代码块简单的时候也可以后置成单行语句，这个用法尤其是嵌套在for/while循环中做跳转判断时非常常见。</p>
+    <p>此外，Perl 还有<b>三目判断符</b>一说。见左侧示例中第4行。</p>
+    <p>注意，Perl 原本没有内置的 switch 判断控制函数。开发者建议是采用规范的 if/else 书写来代替。在 Perl5.10 开始，加入了 given/when 函数；但因为其内部实现采用的 smartmatch (即<code>~~</code>操作符)语义判断过于模糊，从 Perl5.18 开始又被重新改成了试验性质警告状态。所以依然不建议大家使用。</p>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
+
+  <div class="step slide" data-x="44000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>匿名函数与闭包</h1>
+    <p></p>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
+
+  <div class="step slide" data-x="56000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+eval { die "test" };
+print $@;
+
+use Try::Tiny;
+try {
+  die "test2";
+} catch {
+  print $_;
+};
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>错误处理</h1>
+    <p>Perl 中关于错误，有一个非常好听的内置函数叫：<code>die</code>。我们可以在绝大多数 Perl 程序里看到下面这样的语句：</p>
+    <pre>
+      open my $fh, 'ls |' or die $!;
+    </pre>
+    <p>当然，不是什么时候都适合这么暴力的处理，也有低级别的<code>warn</code>。而如果想要针对错误情况做处理的话，可能大家就会想到一般语言都会有的try/catch语句了。Perl 中则提供了另外的方法，采用<code>eval</code>代码块做执行，错误输出保存到<code>$@</code>变量里。</p>
+    <p>依然觉得eval不好用的童鞋，则可以尝试 Try::Tiny 模块。</p>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
+
+  <div class="step slide" data-x="3000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+package main;
+print "Hello, Young Perler.\n";
 1;
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>包</h1>
+    <p>所有的 Perl 代码都由一个个包(package)构成。默认情况下就是<code>package main;</code>，所以这行也可以忽略。</p>
+    <p>比较特殊的是，Perl 的包要求结尾必须返回一个为真的值，通常我们会写一个<code>1</code>，没有比这个更简单的真值写法了。</p>
+    <p>在较新版本的 Perl 中，包还可以定义具体的版本号，以及用大括号显式指明包作用范围。代码如下：</p>
+    <p>
+    <pre>
+package main 0.1 {
+  print "Hello, Young Perler.\n";
+}
+    </pre>
+    </p>
+  </div></div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div>
 
-__END__
-something...
-              </textarea>
-            </form>
-          </div></div>
-          <div class="workspace-bottom">
-            <div class="output"></div>
-          </div>
-        </div></div>
-        <div class="col-md-4">
-          <h2>Hello World</h2>
-          <p>here</p>
-          <div class="step-nav">
-            <a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="step slide" data-x="4000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+use features 'say';
+say "Hello, 世界";
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>导入模块/函数</h1>
+    <p>不管在什么位面，一身神器装备都是必不可少的。</p>
+    <p>Perl 以 CPAN 庞大的第三方模块而闻名于世。无数高手都转引过这么一句话：Perl is a shell of CPAN。那么如何使用模块呢？</p>
+    <p>加载模块本身在 Perl 中有很多种方式：</p>
+    <pre>
+      do "path/to/your.pl";
+      require "path/to/your.pm";
+      use Path::To::Your;
+    </pre>
+    <p>此外，还可以在运行时导入模块：</p>
+    <pre>
+      use Module::Runtime qw/require_module use_module/;
+      require_module('Path::To::Your');
+      # my $obj = use_module('Path::To::Your', 0.31)->new();
+    </pre>
+    <p>某些模块直接导出了一些函数给当前空间使用。我们只需要在导入模块的后面列出所需函数名即可：</p>
+    <pre>
+      use File::Temp (tempfile);
+    </pre>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-    <div class="step slide" data-x="1000" data-y="-1500">
-        test
-    </div>
+  <div class="step slide" data-x="5000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+use Exporter;
+our @EXPORT = qw(func1 func2);
+sub func1 {}
+sub func2 {}
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>导出函数/变量</h1>
+    <p>之前说到模块可以直接导出函数给其他程序使用。该功能是由<code>Exporter</code>模块提供的。只需要将你准备导出的函数名，统一保存到全局变量<code>@EXPORTS</code>里即可。</p>
+    <p>除了函数，还可以导出变量，只需要带上前缀标志即可：</p>
+    <pre>
+      use Exporter;
+      our @EXPORT = qw(func1 $str @arr);
+    </pre>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-    <div id="title" class="step slide" data-x="2000" data-y="-1500">
-        test2
-    </div>
+  <div class="step slide" data-x="51000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+package MyTest;
+sub new {
+  my $class = shift;
+  return bless {@_}, ref $class || $class;
+};
+sub getname {
+    my ($self) = @_;
+    return $self->{name};
+};
+my $obj = MyTest->new(name => 'foo');
+print $obj->getname;
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>对象实现之bless</h1>
+    <p>Perl5 的对象类实现非常简洁而有趣。通过神秘的"符文"<code>bless</code>函数，将一个数据结构的引用赐与类名即可。注意这个数据结构不要求一定是哈希，也可以是数组等。不过一般来说使用哈希的偏多。</p>
+    <p>左侧示例中的bless语句，可以详细拆解成以下几步：</p>
+    <pre>
+my $class = shift;
+$class = ref $class || $class;
+my $self = {@_};
+bless $self, $class;
+return $self;
+    </pre>
+    <p>Perl 的对象类实现支持继承链关系(@ISA)。所有通过 bless 实现的类，都有一个共同的基类<code>UNIVERSAL</code>。而继承关系通过<code>parent</code>模块来定义：</p>
+    <pre>
+package MyTest::Son;
+use parent 'MyTest';
+sub nomorenew {
+    return shift->getname;
+}
+    </pre>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-    <div id="overview" class="step slide" data-x="3000" data-y="1500" data-scale="10">
-    </div>
+  <div class="step slide" data-x="51000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+package MyTest;
+use Moo;
+has 'var' => (
+    is => 'ro',
+    default => sub {'something'},
+);
+has 'later' => (
+    is => 'ro',
+    lazy => 1,
+    builder => '_build_later',
+);
+sub _build_later {
+    my $self = shift;
+    return [ split('t', $self->var) ];
+};
+sub method {
+    return shift->later;
+};
+package main;
+my $obj = MyTest->new();
+print $obj->var;
+print @{ $obj->method };
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>对象实现之Moo</h1>
+    <p>由于 bless 方法太过神秘，为了更贴近普通编程语言，CPAN 提供了一系列 Moose/Mouse/Moos/Moo/Mo 模块，用以书写普通风格的对象类实现。Moose 提供非常强大和齐全的功能，Moo 则更为轻量级。左侧示例仅为演示最基础需求。深入学习请查找专门的文档。</p>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
+
+  <div class="step slide" data-x="63000" data-y="-1500">
+    <h1>CPAN 模块的安装方法</h1>
+    <p>Perl 本身的语法介绍到此基本结束。正如前两页所说，使用 Perl 更多是在使用 CPAN。所以这里有必要单独介绍一下如何方便的安装使用 CPAN 模块。</p>
+    <h2>安装</h2>
+    <p>建议使用cpanm命令。cpanm命令本身可以通过<code>wget http://cpanmin.us -O /usr/local/bin/cpanm</code>直接获取或者<code>cpan -i App::cpanminus</code>安装。cpanm 命令可以自动解决安装模块所需要的其他 CPAN 模块依赖。使用命令如下：</p>
+    <pre>cpanm Module::You::Want</pre>
+    <p>此外，相同作者的 carton 模块也是熟悉 ruby 的 bundler 工具的童鞋值得留意的模块。</p>
+    <h2>查询</h2>
+    <p>搜索庞大的 CPAN，建议访问<a href="http://metacpan.org">MetaCPAN</a>。通过 Elasticsearch 构建的全文检索和建议功能以及评分投票系统可以最快找到所需模块</p>
+    <h2>文档</h2>
+    <p>除了在 MetaCPAN 上直接读取文档以外，已经在本机安装的模块可以在shell下直接执行<code>perldoc Module::You::Want</code>阅读。</p>
+    <h2>镜像</h2>
+    <p>如果网速不太好的童鞋，可以在自己电脑上构建一个最小镜像，只需要500MB左右的空间，使用<a href="https://metacpan.org/pod/release/RJBS/CPAN-Mini-1.111015/bin/minicpan">CPAN::Mini</a>即可。</p>
+  </div>
+
+  <div class="step slide" data-x="63000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+use Path::Tiny qw/path tempfile/;
+$file = tempfile();
+$guts = $file->slurp_utf8;
+@lines = $file->lines_utf8;
+$head = $file->lines( {count => 1} );
+
+$bar = path('/tmp/text.txt')->touch;
+$bar->spew_utf8( @data );
+$bar->append_utf8( @data );
+print $bar->digest('MD5');
+print $bar->stat;
+
+path('/tmp/test/here')->touchpath;
+path('/tmp/test/here')->remove_tree;
+
+$dir = path('/tmp');
+for ( $dir->children( qr/\.txt$/ ) ) {
+    print
+};
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>文件操作</h1>
+    <p>Perl 作为系统管理的第一选择，直接提供了大量底层函数可供操作。在文件操作方面有诸如<code>chdir</code>, <code>chmod</code>, <code>chown</code>, <code>chroot</code>, <code>fcntl</code>, <code>glob</code>, <code>ioctl</code>, <code>link</code>, <code>lstat</code>, <code>mkdir</code>, <code>open</code>, <code>opendir<code>, <code>readlink</code>, <code>rename</code>, <code>rmdir</code>, <code>stat</code>, <code>symlink</code>, <code>sysopen</code>, <code>umask</code>, <code>unlink</code>, <code>utime<code>。</p>
+    <p>不过在实际运用中，一些比较方便使用的高阶函数，却分散在不同的 CPAN 模块里，需要加载一长串列表。Path::Tiny 因此应运而生。常见功能见左侧示例</p>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
+
+  <div class="step slide" data-x="63000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+use IPC::Run qw/run timeout/;
+my @cmd = qw(ls -a);
+my ($in, $out, $err);
+run \@cmd, \$in, \$out, \$err, timeout(10) or die $!;
+print $err ? $err : $out;
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>系统命令</h1>
+    <p>Perl 中有很多种方式调用系统命令。类似 awk 的<code>system</code>函数，类似 bash 的<code>``</code> 操作符，甚至可以通过<code>open</code>来获取系统命令的管道输出。不过这些方式都有各自的缺陷，推荐使用<code>IPC::Run</code>模块来执行系统命令，可以指定超时时间，分别获取标准输出和错误输出。非常方便。</p>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
+
+  <div class="step slide" data-x="63000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+use warnings;
+use strict;
+use DBI;
+use DBD::SQLite;
+my $dsn = "dbi:SQLite:dbname=:memory:";
+my $dbh = DBI->connect($dsn,'','');
+$dbh->do('CREATE TABLE test (col char)');
+my $sth = $dbh->prepare('INSERT INTO test(col) VALUES(?)');
+$sth->execute('abc');
+my $sth2 = $dbh->prepare('SELECT * from test');
+$sth2->execute;
+while(my $ref = $sth2->fetchrow_hashref) {
+    print $ref->{'col'};
+}
+$dbh->do('DROP TABLE test');
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>数据库操作</h1>
+    <p>Perl 里所有的数据库操作有一个统一的接口模块叫<a href="http://metacpan.org/pod/DBI">DBI</a>，类似的还有缓存的接口叫<a href="http://metacpan.org/pod/CHI">CHI</a>。</p>
+    <p>左侧示例是一个构建在内存里的 SQLite 数据库的操作过程。正如之前所说，Perl 中对象的初始化并不要求一定使用 new 为方法名，DBI 对象的初始化方法名叫做 connect。</p>
+    <p>操作主要分为两种，<code>->do()</code>用于一次性操作不需要返回结果的场合，而<code>->prepare()</code>用于需要重复运行类似 SQL 或者需要获取结果的场合，通过<code>->execute(@var)</code>来真正运行。</p>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
+
+  <div class="step slide" data-x="72000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+use HTTP::Tiny;
+use HTTP::CookieJar;
+my $ua = HTTP::Tiny->new(
+    cookie_jar => HTTP::CookieJar->new
+);
+my $res = $ua->get('http://www.baidu.com/');
+print "$res->{status} $res->{reason}\n" unless $res->{success};
+while (my ($k, $v) = each %{$res->{headers}}) {
+    for (ref $v eq 'ARRAY' ? @$v : $v) {
+        print "$k: $_\n";
+    }
+}
+print $res->{content} if length $res->{content};
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>HTTP 交互</h1>
+    <p>长期以来 Perl 的HTTP交互客户端都是采用libwww-perl，即 LWP 模块。不过随着HTTP::Tiny加入 Perl内核模块列表，未来这个更高效和轻量级的客户端应该值得推荐。</p>
+    <p>另一方面，mojolicious 的 Mojo::UserAgent 因为对 WebSocket 的支持，以及附带的 DOM selector 解析，在某些时候也是比较值得推荐的HTTP客户端。</p>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
+
+  <div class="step slide" data-x="58000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+use strict;
+use warnings;
+use Test::More;
+use Dancer::Test;
+
+use Dancer ':tests';
+
+get '/' => sub {
+    return 'hello, world';
+};
+
+response_status_is [GET => '/'], 200, "GET / is found";
+response_content_like [GET => '/'], qr/hello, world/, "content looks good for /";
+
+done_testing();
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>网站开发与测试</h1>
+    <p>Perl 曾经以 CGI 的代名词闻名于世。不过在开发框架风行的当下，我们可以不用关心HTTP层的信息，直接上手快速开发网站。</p>
+    <p>Perl 目前流行的网站开发框架主要有：<code>Catalyst</code>、<code>Dancer</code>、<code>Mojolicious</code>等。左侧示例为 Dancer 的测试用例一则。</p>
+    <p>Dancer 语法起源自 Ruby 社区的 sinatra 框架。下面这段 8 行代码，展示了 dancer 的主要特性。保存成文件即可直接执行。</p>
+    <pre>
+use Dancer ':syntax';
+get '/path/:name' => sub {
+    return template 'path', {
+        path => param('name'),
+        user => session('user'),
+    };
+};
+dance;
+    </pre>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
+
+  <div class="step slide" data-x="65000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+use LWP::Simple;
+use Parallel::ForkManager;
+ 
+my @links=(
+  ["http://www.foo.bar/rulez.data","rulez_data.txt"],
+  ["http://new.host/more_data.doc","more_data.doc"],
+);
+ 
+my $pm = Parallel::ForkManager->new(30);
+ 
+foreach my $linkarray (@links) {
+  $pm->start and next; # do the fork
+ 
+  my ($link,$fn) = @$linkarray;
+  warn "Cannot get $fn from $link"
+    if getstore($link,$fn) != RC_OK;
+ 
+  $pm->finish;
+}
+$pm->wait_all_children;
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>并发编程之进程</h1>
+    <p></p>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
+
+  <div class="step slide" data-x="63000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+use AnyEvent;
+use AnyEvent::HTTP;
+my @urls = qw(
+    http://www.baidu.com
+    http://www.sina.com.cn
+);
+my $cv = AnyEvent->condvar;
+for my $url (@urls) {
+    $cv->begin;
+    http_get 'http://www.baidu.com', sub {
+        print $_[0];
+        $cv->end;
+    };
+};
+$cv->recv;
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>并发编程之事件驱动</h1>
+    <p></p>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
+
+  <div class="step slide" data-x="64000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
+    <h1>并发编程之纤程</h1>
+    <p></p>
+  </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
+
+    <div id="overview" class="step slide" data-x="73000" data-y="1500" data-scale="10"></div>
 
 </div>
 <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
@@ -87,6 +729,5 @@ something...
 <script src="/javascripts/codemirror/codemirror.js"></script>
 <script src="/javascripts/codemirror/mode/perl.js"></script>
 <script src="/javascripts/tour.js"></script>
-
 </body>
 </html>

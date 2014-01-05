@@ -7,7 +7,7 @@ use Web::Query;
 use Data::Dumper;
 use File::Temp qw(tempfile);
 use IPC::Run qw(run timeout);
-use utf8;
+use Encode qw(decode encode);
 
 our $VERSION = '0.1';
 
@@ -22,15 +22,16 @@ get '/' => sub {
 ajax '/run' => sub {
     my ($in, $out, $err);
     my $code = param('code');
-    my @cmd = qw(docker run -v /tmp/:/tmp:ro ubuntu perl);
+    my @cmd = qw(docker run -v /tmp/:/tmp:ro ubuntu:perl-tour perl);
     my ($fh, $temp) = tempfile();
+    binmode($fh, ':utf8');
     print $fh $code;
     push @cmd, $temp;
     run \@cmd, \$in, \$out, \$err, timeout(10) or debug($?);
     unlink $temp;
     return to_json({
-        Errors => [ split(/\n/, $err) ],
-        Events => [ split(/\n/, $out) ],
+        Errors => [ split(/\n/, decode('utf8', $err)) ],
+        Events => [ split(/\n/, decode('utf8', $out)) ],
     });
 };
 
