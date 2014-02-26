@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="/css/tour.css" />
     <link rel="shortcut icon" href="favicon.png" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+    <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/javascripts/codemirror/codemirror.js"></script>
+    <script src="/javascripts/codemirror/mode/perl.js"></script>
 </head>
 
 <body id="body" class="impress-not-supported onload">
@@ -23,7 +27,7 @@
     
 <div id="impress">
         
-  <div class="step slide" data-x="0" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="-2000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 print "Hello, 世界\n";
   </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
     <h1>Hello, 世界</h1>
@@ -32,14 +36,14 @@ print "Hello, 世界\n";
     <p>按照编程位面的惯例，大声跟 Perl 的魔法世界问声好吧~愿您本次位面之旅愉快，早日转职 Perl Monger！</p>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="2000" data-y="-1500" data-scale="4">
+  <div class="step slide" data-x="1000" data-y="-1500" data-scale="4">
     <h1>后台实现概述</h1>
     <p><b>《金刚经》：一切有为法，如梦幻泡影，如露亦如电，应作如是观</b></p>
     <p>每一次 Perl 魔法的施展，都是在全新的 Docker 容器中进行，不用担心你有心无心的错误操作造成什么不可挽回的损失，请放心。</p>
     <p>本设计参考 <a href="http://play.golang.org">Go Playground</a> 的说明文档，转益多师是我师。</p>
   <div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div>
 
-  <div class="step slide" data-x="10000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="2000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 $number = 1234;
 $string = 'foo';
 @array = (1, 2, 3, 4);
@@ -65,7 +69,7 @@ print %newhash;
     </ul>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="6000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="3000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 @_ = qw/3, 4/;
 &func;
 func();
@@ -85,7 +89,7 @@ sub func {
     <p>在使用<code>&func</code>方式调用的时候，默认会把当前<code>@_</code>作为函数参数传递进去。这种方式容易引起一定困惑，不建议使用！</p>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="8000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="4000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 use Data::Dumper;
 sub func {
     my $foo = "foo";
@@ -99,7 +103,7 @@ print Dumper func();
     <p><b>最佳实践：不管是传参还是返回，强烈建议使用引用的方式避免拷贝内存副本，简洁高效。</b></p>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="10000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="5000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 @array = (1, 2, 3, 4);
 @newarray = @array;
 print \@array, \@newarray;
@@ -118,6 +122,7 @@ $sub = sub { return 1 };
 print ref($sub);
 print $sub->();
 
+use HTTP::Tiny;
 $obj = HTTP::Tiny->new();
 print ref($obj);
 print $obj->get('http://www.baidu.com');
@@ -138,7 +143,7 @@ print $obj->get('http://www.baidu.com');
     <p>此外，<code>ref</code>函数提供给我们查看标量引用指向的实际变量类型的能力。</p>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="15000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="6000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 use feature 'say';
 $num += 12;
 print '312' + $num;
@@ -171,7 +176,7 @@ print defined($other);
     <p>chomp 和 chop 的不同在于：chomp 只在标量结尾是<code>\r\n</code>的时候才生效。</p>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="15000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="7000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 @array = qw/a b c d/;
 print pop @array;
 print @array;
@@ -197,7 +202,7 @@ print join '-', @array;
     </pre>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="15000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="8000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 use List::AllUtils qw/first/;
 @array = qw/1 2 4 8 16 32/;
 print first {$_ > 5} @array;
@@ -229,7 +234,7 @@ print first {$_ > 5} @array;
     </pre>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="15000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="9000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 %hash = ( a => 'b', c => 'd' );
 @keys = keys %hash;
 @values = values %hash;
@@ -242,7 +247,7 @@ print exists $hash{'a'};
     <p>另：前一篇提到的List::AllUtils中，也有一部分关于键值对的函数可用。</p>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="15000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="10000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 $str = "aabbccdd";
 $str =~ s/[abc]/d/g;
 print $str;
@@ -271,7 +276,7 @@ print %+;
     <p>注意：命名捕获也是Perl5.10后才有的功能。</p>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="15000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="11000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 use warnings;
 use feature 'state';
 use feature 'say';
@@ -307,7 +312,7 @@ say test();
     <p>从本节开始，所有示例将启用<code>use strict;use warnings</code>规范。也建议大家同样使用。</p>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="16000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="12000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 use strict;
 use warnings;
 my @array = qw(a, b, c, d);
@@ -340,7 +345,7 @@ print @odd;
     <p>需要指出的是，<b>列表不等同于数组</b>，列表上下文中的返回值也可能被赋值为哈希。</p>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="17000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="13000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 use strict;
 use warnings;
 my @array = qw/1 2 3/;
@@ -360,7 +365,7 @@ for my $val (@array) {
     <pre>say for @array;</pre>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="19000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="14000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 use strict;
 use warnings;
 open my $fh, '<', 'bin/cpanm';
@@ -373,7 +378,7 @@ while (my $line = <$fh>) {
     <p>IO 操作主要是在大文件读取、SQL数据返回等方面。这方面采用 while 循环的原因是：while 语句中比较适合写列表上下文的操作，而 IO 操作在列表上下文中会从文件句柄中逐行读取，不要求一口气全部读入内存。</p>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="23000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="15000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 use strict;
 use warnings;
 $str = 'abc';
@@ -394,13 +399,13 @@ if ( $str eq 'abc' ) {
     <p>注意，Perl 原本没有内置的 switch 判断控制函数。开发者建议是采用规范的 if/else 书写来代替。在 Perl5.10 开始，加入了 given/when 函数；但因为其内部实现采用的 smartmatch (即<code>~~</code>操作符)语义判断过于模糊，从 Perl5.18 开始又被重新改成了试验性质警告状态。所以依然不建议大家使用。</p>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="44000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="16000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
   </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
     <h1>匿名函数与闭包</h1>
     <p></p>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="56000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="17000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 eval { die "test" };
 print $@;
 
@@ -420,7 +425,7 @@ try {
     <p>依然觉得eval不好用的童鞋，则可以尝试 Try::Tiny 模块。</p>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="3000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="18000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 package main;
 print "Hello, Young Perler.\n";
 1;
@@ -438,7 +443,7 @@ package main 0.1 {
     </p>
   </div></div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div>
 
-  <div class="step slide" data-x="4000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="19000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 use features 'say';
 say "Hello, 世界";
   </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
@@ -463,7 +468,7 @@ say "Hello, 世界";
     </pre>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="5000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="20000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 use Exporter;
 our @EXPORT = qw(func1 func2);
 sub func1 {}
@@ -478,7 +483,7 @@ sub func2 {}
     </pre>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="51000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="21000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 package MyTest;
 sub new {
   my $class = shift;
@@ -511,7 +516,7 @@ sub nomorenew {
     </pre>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="51000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="22000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 package MyTest;
 use Moo;
 has 'var' => (
@@ -539,7 +544,7 @@ print @{ $obj->method };
     <p>由于 bless 方法太过神秘，为了更贴近普通编程语言，CPAN 提供了一系列 Moose/Mouse/Moos/Moo/Mo 模块，用以书写普通风格的对象类实现。Moose 提供非常强大和齐全的功能，Moo 则更为轻量级。左侧示例仅为演示最基础需求。深入学习请查找专门的文档。</p>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="63000" data-y="-1500">
+  <div class="step slide" data-x="23000" data-y="-1500">
     <h1>CPAN 模块的安装方法</h1>
     <p>Perl 本身的语法介绍到此基本结束。正如前两页所说，使用 Perl 更多是在使用 CPAN。所以这里有必要单独介绍一下如何方便的安装使用 CPAN 模块。</p>
     <h2>安装</h2>
@@ -554,7 +559,7 @@ print @{ $obj->method };
     <p>如果网速不太好的童鞋，可以在自己电脑上构建一个最小镜像，只需要500MB左右的空间，使用<a href="https://metacpan.org/pod/release/RJBS/CPAN-Mini-1.111015/bin/minicpan">CPAN::Mini</a>即可。</p>
   </div>
 
-  <div class="step slide" data-x="63000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="24000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 use Path::Tiny qw/path tempfile/;
 $file = tempfile();
 $guts = $file->slurp_utf8;
@@ -576,11 +581,11 @@ for ( $dir->children( qr/\.txt$/ ) ) {
 };
   </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
     <h1>文件操作</h1>
-    <p>Perl 作为系统管理的第一选择，直接提供了大量底层函数可供操作。在文件操作方面有诸如<code>chdir</code>, <code>chmod</code>, <code>chown</code>, <code>chroot</code>, <code>fcntl</code>, <code>glob</code>, <code>ioctl</code>, <code>link</code>, <code>lstat</code>, <code>mkdir</code>, <code>open</code>, <code>opendir<code>, <code>readlink</code>, <code>rename</code>, <code>rmdir</code>, <code>stat</code>, <code>symlink</code>, <code>sysopen</code>, <code>umask</code>, <code>unlink</code>, <code>utime<code>。</p>
+    <p>Perl 作为系统管理的第一选择，直接提供了大量底层函数可供操作。在文件操作方面有诸如<code>chdir</code>, <code>chmod</code>, <code>chown</code>, <code>chroot</code>, <code>fcntl</code>, <code>glob</code>, <code>ioctl</code>, <code>link</code>, <code>lstat</code>, <code>mkdir</code>, <code>open</code>, <code>opendir</code>, <code>readlink</code>, <code>rename</code>, <code>rmdir</code>, <code>stat</code>, <code>symlink</code>, <code>sysopen</code>, <code>umask</code>, <code>unlink</code>, <code>utime</code>。</p>
     <p>不过在实际运用中，一些比较方便使用的高阶函数，却分散在不同的 CPAN 模块里，需要加载一长串列表。Path::Tiny 因此应运而生。常见功能见左侧示例</p>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="63000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="25000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 use IPC::Run qw/run timeout/;
 my @cmd = qw(ls -a);
 my ($in, $out, $err);
@@ -591,7 +596,7 @@ print $err ? $err : $out;
     <p>Perl 中有很多种方式调用系统命令。类似 awk 的<code>system</code>函数，类似 bash 的<code>``</code> 操作符，甚至可以通过<code>open</code>来获取系统命令的管道输出。不过这些方式都有各自的缺陷，推荐使用<code>IPC::Run</code>模块来执行系统命令，可以指定超时时间，分别获取标准输出和错误输出。非常方便。</p>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="63000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="26000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 use warnings;
 use strict;
 use DBI;
@@ -614,7 +619,7 @@ $dbh->do('DROP TABLE test');
     <p>操作主要分为两种，<code>->do()</code>用于一次性操作不需要返回结果的场合，而<code>->prepare()</code>用于需要重复运行类似 SQL 或者需要获取结果的场合，通过<code>->execute(@var)</code>来真正运行。</p>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="72000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="27000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 use HTTP::Tiny;
 use HTTP::CookieJar;
 my $ua = HTTP::Tiny->new(
@@ -634,7 +639,7 @@ print $res->{content} if length $res->{content};
     <p>另一方面，mojolicious 的 Mojo::UserAgent 因为对 WebSocket 的支持，以及附带的 DOM selector 解析，在某些时候也是比较值得推荐的HTTP客户端。</p>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="58000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="28000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 use strict;
 use warnings;
 use Test::More;
@@ -667,7 +672,7 @@ dance;
     </pre>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="65000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="29000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 use LWP::Simple;
 use Parallel::ForkManager;
  
@@ -693,7 +698,7 @@ $pm->wait_all_children;
     <p></p>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="63000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="30000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
 use AnyEvent;
 use AnyEvent::HTTP;
 my @urls = qw(
@@ -714,20 +719,16 @@ $cv->recv;
     <p></p>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-  <div class="step slide" data-x="64000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
+  <div class="step slide" data-x="31000" data-y="-1500"><div class="row"><div class="col-md-8"><div class="workspace"><div class="controls"><button type="button" class="run btn btn-primary">Run</button></div><div class="workspace-top"><div class="workspace-editor"><form><textarea class="editor" id="code">
   </textarea></form></div></div><div class="workspace-bottom"><div class="output"></div></div></div></div><div class="col-md-4">
     <h1>并发编程之纤程</h1>
     <p></p>
   </div><div class="step-nav"><a class="btn next-step" type="button"><i class="icon-arrow-right">&nbsp;</i>Next Page</a></div></div></div>
 
-    <div id="overview" class="step slide" data-x="73000" data-y="1500" data-scale="10"></div>
+    <div id="overview" class="step slide" data-x="32000" data-y="1500" data-scale="10"></div>
 
 </div>
-<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
-<script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="/javascripts/impress.js"></script>
-<script src="/javascripts/codemirror/codemirror.js"></script>
-<script src="/javascripts/codemirror/mode/perl.js"></script>
-<script src="/javascripts/tour.js"></script>
+    <script src="/javascripts/impress.js"></script>
+    <script src="/javascripts/tour.js"></script>
 </body>
 </html>

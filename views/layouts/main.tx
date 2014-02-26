@@ -1,4 +1,6 @@
-<!DOCTYPE html> <html xmlns:wb=“http://open.weibo.com/wb”> <head> <meta charset="utf-8"> <title>Perl学习平台 | Perl 中国用户组</title>
+<!DOCTYPE html><html xmlns:wb="http://open.weibo.com/wb">
+<head>
+<meta charset="utf-8"><title>Perl 中国用户组 | 新时代 Perl 学习平台 | 最新最快的 Perl 社区动态</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="keywords" content="Perl教程, Perl学习, Perl开发, Perl视频">
 <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css" type="text/css" />
@@ -20,7 +22,7 @@
           <span class="glyphicon-bar"></span>
           <span class="glyphicon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.perl-china.com/">Perl-China.com</a>
+        <a class="navbar-brand" href="http://www.perl-china.com/">PerlDaily</a>
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -46,7 +48,7 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="/login"><button type="button" class="btn btn-primary btn-xs">登陆</button></a></li>
+          <li><a href="http://perl-china.com/login"><button type="button" class="btn btn-primary btn-xs">登陆</button></a></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>
