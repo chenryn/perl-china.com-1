@@ -1,0 +1,6 @@
+<img src="<: $user.avatar_large :>"/>
+微博地址：<a href="http://weibo.com/<: $user.domain :>">http://weibo.com/<: $user.domain :></a>
+签名档：<: $user.description :>
+住址：<: $user.location :>
+个人网站：<a href="<: $user.url :>"><: $user.url :></a>
+最新微博：<: $user.status.text :>

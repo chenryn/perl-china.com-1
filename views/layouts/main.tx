@@ -47,12 +47,36 @@
             </ul>
           </li>
         </ul>
+: if $session.user == nil {
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="http://perl-china.com/login"><button type="button" class="btn btn-primary btn-xs">登陆</button></a></li>
+          <li><a href="/user/login"><button type="button" class="btn btn-primary btn-xs">登陆</button></a></li>
         </ul>
+: } else {
+        <div class="btn-group pull-right">
+          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+            <img src="<: $session.user.hdimg :>"/><: $session.user.name :>
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="/user/profile">设置</a></li>
+            <li class="divider"></li>
+            <li><a href="/user/logout">退出</a></li>
+          </ul>
+        </div>
+: }
       </div><!--/.nav-collapse -->
     </div>
   </div>
+
+: if $deferred.error {
+  <div class="alert alert-error"><a class="close" data-dismiss="alert" href="#">×</a> <: $deferred.error :> </div>
+: }
+: if $deferred.message {
+  <div class="alert"><a class="close" data-dismiss="alert" href="#">×</a> <: $deferred.message :> </div>
+: }
+: if $deferred.success {
+  <div class="alert alert-success"><a class="close" data-dismiss="alert" href="#">×</a> <: $deferred.success :> </div>
+: }
 
   <div class="container">
     <: $content | raw :>

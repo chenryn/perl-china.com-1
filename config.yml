@@ -60,3 +60,11 @@ plugins:
             AutoCommit: 1
         on_connect_do: ["SET NAMES 'utf8'", "SET CHARACTER SET 'utf8'" ]
         log_queries: 1
+
+
+app_key: 2248245136
+app_secret: f67326ba48342b250d729de6416b7ca6
+
+session: "YAML"
+session_dir: "/tmp/pcws_sessions"
+session_expires: 1d

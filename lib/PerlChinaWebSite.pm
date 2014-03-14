@@ -1,15 +1,20 @@
 package PerlChinaWebSite;
 use Dancer ':syntax';
-use Dancer::Plugin::Database;
 use Dancer::Plugin::Ajax;
+use Dancer::Plugin::Database;
+use Dancer::Plugin::Deferred;
+use Net::OAuth2::Client;
 use List::MoreUtils qw(natatime);
 use Web::Query;
 use Data::Dumper;
 use File::Temp qw(tempfile);
 use IPC::Run qw(start harness timeout);
 use Encode qw(decode encode);
+use JSON qw(decode_json);
 
 our $VERSION = '0.1';
+
+Dancer::Session::Abstract->attributes( qw/user/ );
 
 get '/' => sub {
     template 'index', {
@@ -17,6 +22,40 @@ get '/' => sub {
         lw => latest_weekly(),
         lb => latest_blog(),
     };
+};
+
+get '/user/login' => sub {
+    redirect &client->authorize;
+};
+
+get '/user/profile' => sub {
+    my $user;
+    my $session = &client->get_access_token(params->{code});
+    deferred error => $session->error_description if $session->error;
+    my $uid_res = $session->get('/2/account/get_uid.json');
+    if ( $uid_res->is_success ) {
+        my $uid = (decode_json $uid_res->decoded_content)->{'uid'};
+        my $ushow_res = $session->get("/2/users/show.json?uid=${uid}");
+        if ( $ushow_res->is_success ) {
+            $user = decode_json $ushow_res->decoded_content;
+            session user => { name => $user->{'name'}, hdimg => $user->{'profile_image_url'} };
+            deferred success => sprintf "Welcome back, %s", session('user')->{name};
+            template 'profile', { user => $user };
+        } else {
+            deferred error => $ushow_res->status_line . "uid $uid show";
+            redirect '/';
+        }
+    } else {
+        deferred error => $uid_res->status_line . 'get_uid';
+        redirect '/';
+    };
+};
+
+get '/user/logout' => sub {
+    my $user= session('user')->{name};
+    session user => undef;
+    deferred success => sprintf "Goodbye, %s", $user;
+    redirect '/';
 };
 
 ajax '/run' => sub {
@@ -77,17 +116,23 @@ sub latest_weekly {
     my $q = wq('http://perlweekly.com/latest.html');
     my @ret;
     for my $want ( qw(announcements articles code fun videos) ) {
-#        $q->find('#'.$want)->parent->find('a')->each(sub {
-#            my ($k, $v) = @_;
-#            push @ret, {
-#                text => $v->text,
-#                href => $v->attr('href'),
-#                desc => $v->parent->parent->find('p')->last->text,
-#            };
-#        });
-        push @ret, $q->find("#$want")->parent->as_html;
+        eval { push @ret, $q->find("#$want")->parent->as_html };
     };
     return \@ret;
+};
+
+sub client {
+    Net::OAuth2::Profile::WebServer->new(
+        name                => 'weibo',
+        site                => 'https://api.weibo.com',
+        client_id           => config->{app_key},
+        client_secret       => config->{app_secret},
+        authorize_path      => '/oauth2/authorize',
+        access_token_path   => '/oauth2/access_token',
+        access_token_method => 'POST',
+        token_scheme        => 'uri-query:access_token',
+        redirect_uri        => uri_for('/user/profile'),
+    );
 };
 
 true;
