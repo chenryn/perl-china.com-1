@@ -29,7 +29,6 @@ get '/user/login' => sub {
 };
 
 get '/user/profile' => sub {
-    my $user;
     my $session = &client->get_access_token(params->{code});
     deferred error => $session->error_description if $session->error;
     my $uid_res = $session->get('/2/account/get_uid.json');
@@ -37,7 +36,7 @@ get '/user/profile' => sub {
         my $uid = (decode_json $uid_res->decoded_content)->{'uid'};
         my $ushow_res = $session->get("/2/users/show.json?uid=${uid}");
         if ( $ushow_res->is_success ) {
-            $user = decode_json $ushow_res->decoded_content;
+            my $user = decode_json $ushow_res->decoded_content;
             session user => { name => $user->{'name'}, hdimg => $user->{'profile_image_url'} };
             deferred success => sprintf "Welcome back, %s", session('user')->{name};
             template 'profile', { user => $user };
